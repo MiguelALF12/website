@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Miguel Angel Lopez | Software Engineer & Automation Architect</title>
+    <meta name="title" content="Miguel Angel Lopez | Software Engineer">
+    <meta name="description"
+        content="Software Engineer specialized in using AI, designing Automations and Full-Stack Development.">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Miguel Angel Lopez | Full-Stack Portfolio">
+    <meta property="og:description" content="Expertise in AI/LLMs, PHP/Laravel, and Multi-Cloud Infrastructure.">
+    <meta property="og:image" content="miguel.jpg">
+
+    <!-- Tailwind & Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.8);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Refined Pill Styling */
+        .skill-pill {
+            padding: 0.375rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-width: 1px;
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .skill-pill:hover {
+            transform: scale(1.05);
+        }
+
+        /* Category Colors */
+        .pill-green {
+            border-color: rgb(167 243 208);
+            background-color: rgb(236 253 245);
+            color: rgb(4 120 87);
+        }
+
+        .dark .pill-green {
+            background-color: rgba(6, 78, 59, 0.3);
+            border-color: rgb(6 78 59);
+            color: rgb(52 211 153);
+        }
+
+        .pill-blue {
+            border-color: rgb(191 219 254);
+            background-color: rgb(239 246 255);
+            color: rgb(29 78 216);
+        }
+
+        .dark .pill-blue {
+            background-color: rgba(30, 58, 138, 0.3);
+            border-color: rgb(30 58 138);
+            color: rgb(96 165 250);
+        }
+
+        .pill-purple {
+            border-color: rgb(233 213 255);
+            background-color: rgb(250 245 255);
+            color: rgb(107 33 168);
+        }
+
+        .dark .pill-purple {
+            background-color: rgba(88, 28, 135, 0.3);
+            border-color: rgb(88 28 135);
+            color: rgb(192 132 252);
+        }
+
+        .pill-amber {
+            border-color: rgb(253 230 138);
+            background-color: rgb(254 252 232);
+            color: rgb(146 64 14);
+        }
+
+        .dark .pill-amber {
+            background-color: rgba(120, 53, 15, 0.3);
+            border-color: rgb(120 53 15);
+            color: rgb(251 191 36);
+        }
+
+        .pill-slate {
+            border-color: rgb(226 232 240);
+            background-color: rgb(241 245 249);
+            color: rgb(51 65 85);
+        }
+
+        .dark .pill-slate {
+            background-color: rgb(30 41 59);
+            border-color: rgb(51 65 85);
+            color: rgb(203 213 225);
+        }
+
+        /* Scrollable Area Logic */
+        .scroll-zone {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+
+        .scroll-zone::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .scroll-zone::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .scroll-zone::-webkit-scrollbar-thumb {
+            @apply bg-slate-200 dark:bg-slate-800 rounded-full;
+        }
+
+        [data-lang="es"] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 font-sans">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="font-black text-xl tracking-tighter text-primary-600 dark:text-primary-400">
+                MALF<span class="text-slate-400">.DEV</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLanguage()"
+                    class="text-xs font-bold px-2 py-1 rounded border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <span id="lang-btn">ES</span>
+                </button>
+
+                <button onclick="toggleTheme()" title="Toggle theme"
+                    class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+
+                <a href="#contact"
+                    class="hidden md:block bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all">
+                    <span data-lang="en">Get in touch</span>
+                    <span data-lang="es">Contáctame</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-20 px-4">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10">
+            <!-- Professional Photo -->
+            <div class="relative flex-shrink-0 group">
+                <div
+                    class="w-48 h-48 md:w-56 md:h-56 rounded-3xl overflow-hidden bg-slate-200 dark:bg-slate-800 border-4 border-white dark:border-slate-900 shadow-2xl transition-transform group-hover:rotate-3">
+                    <img src="img/miguel.png" alt="Miguel Angel Lopez"
+                        class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500">
+                </div>
+                <div
+                    class="absolute -bottom-4 -right-4 w-12 h-12 bg-primary-600 text-white rounded-2xl flex items-center justify-center shadow-lg transform group-hover:-translate-y-2 transition-transform">
+                    <i class="fas fa-code"></i>
+                </div>
+            </div>
+
+            <div class="flex-1 text-center md:text-left">
+                <div
+                    class="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-widest text-primary-600 uppercase bg-primary-100 dark:bg-primary-900/30 dark:text-primary-400 rounded-full">
+                    <span data-lang="en">Engineering Scalable Solutions</span>
+                    <span data-lang="es">Ingeniería de Soluciones Escalables</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
+                    Miguel Angel <br><span class="text-primary-600">Lopez Fernandez</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl leading-relaxed">
+                    <span data-lang="en">Software Engineer specialized in <strong>using AI</strong>, <strong>designing
+                            Automations</strong> and <strong>Full-Stack Development</strong>. Based in Pereira,
+                        CO.</span>
+                    <span data-lang="es">Ingeniero de Software especializado en el <strong>uso de IA</strong>, el
+                        <strong>diseño de Automatizaciones</strong> y el <strong>Desarrollo Full-Stack</strong>.
+                        Residente en Pereira, CO.</span>
+                </p>
+
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                    <a href="https://github.com/MiguelALF12" target="_blank" rel="noopener noreferrer"
+                        class="flex items-center gap-2 px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold hover:scale-105 transition-transform">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="#experience"
+                        class="flex items-center gap-2 px-6 py-3 border border-slate-300 dark:border-slate-700 rounded-xl font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                        <i class="fas fa-file-pdf"></i> <span data-lang="en">Resume</span><span
+                            data-lang="es">Currículum</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quick Stats -->
+    <section class="max-w-5xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div
+                class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center hover:border-primary-400 transition-colors">
+                <div class="text-3xl font-black text-primary-600 mb-1">3+</div>
+                <div class="text-xs uppercase font-bold text-slate-500 tracking-wider"><span data-lang="en">Years
+                        Experience</span><span data-lang="es">Años de Exp.</span></div>
+            </div>
+            <div
+                class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center hover:border-primary-400 transition-colors">
+                <div class="text-3xl font-black text-primary-600 mb-1">12+</div>
+                <div class="text-xs uppercase font-bold text-slate-500 tracking-wider"><span data-lang="en">Key
+                        Projects</span><span data-lang="es">Proyectos Clave</span></div>
+            </div>
+            <div
+                class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center hover:border-primary-400 transition-colors">
+                <div class="text-3xl font-black text-primary-600 mb-1">n8n</div>
+                <div class="text-xs uppercase font-bold text-slate-500 tracking-wider"><span data-lang="en">Automation
+                        Expertise</span><span data-lang="es">Experto en Autom.</span></div>
+            </div>
+            <div
+                class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center hover:border-primary-400 transition-colors">
+                <div class="text-3xl font-black text-primary-600 mb-1">Multi</div>
+                <div class="text-xs uppercase font-bold text-slate-500 tracking-wider">Cloud Infra</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-5xl mx-auto px-4 py-20 grid grid-cols-1 md:grid-cols-3 gap-12">
+
+        <!-- Left Column: Skills & Education -->
+        <aside class="space-y-12 md:sticky md:top-24 h-fit">
+            <div>
+                <h3 class="text-sm font-black uppercase text-slate-400 mb-8 tracking-widest flex items-center gap-2">
+                    <span data-lang="en">Technical Stack</span><span data-lang="es">Stack Técnico</span>
+                    <div class="h-[1px] flex-1 bg-slate-200 dark:bg-slate-800"></div>
+                </h3>
+
+                <div class="space-y-8">
+                    <!-- Languages -->
+                    <div>
+                        <p
+                            class="text-[10px] font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center gap-2">
+                            <i class="fas fa-terminal"></i> Languages
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill pill-green">JavaScript</span>
+                            <span class="skill-pill pill-green">PHP</span>
+                            <span class="skill-pill pill-green">Python</span>
+                            <span class="skill-pill pill-green">Java</span>
+                            <span class="skill-pill pill-green">HTML5/CSS3</span>
+                        </div>
+                    </div>
+
+                    <!-- Frameworks -->
+                    <div>
+                        <p
+                            class="text-[10px] font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center gap-2">
+                            <i class="fas fa-layer-group"></i> Frameworks
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill pill-blue">Laravel</span>
+                            <span class="skill-pill pill-blue">Vue.js</span>
+                            <span class="skill-pill pill-blue">Angular</span>
+                            <span class="skill-pill pill-blue">Node.js</span>
+                            <span class="skill-pill pill-blue">Spring Boot</span>
+                            <span class="skill-pill pill-blue">Django</span>
+                        </div>
+                    </div>
+
+                    <!-- Cloud & Automation -->
+                    <div>
+                        <p
+                            class="text-[10px] font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center gap-2">
+                            <i class="fas fa-robot"></i> Cloud & Automation
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill pill-purple">AWS (EC2, S3)</span>
+                            <span class="skill-pill pill-purple">GCP</span>
+                            <span class="skill-pill pill-purple">DigitalOcean</span>
+                            <span class="skill-pill pill-purple">n8n</span>
+                            <span class="skill-pill pill-purple">AI / LLMs</span>
+                            <span class="skill-pill pill-purple">Docker</span>
+                        </div>
+                    </div>
+
+                    <!-- Databases & Others -->
+                    <div>
+                        <p
+                            class="text-[10px] font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center gap-2">
+                            <i class="fas fa-tools"></i> Databases & Tools
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill pill-amber">PostgreSQL</span>
+                            <span class="skill-pill pill-amber">MySQL</span>
+                            <span class="skill-pill pill-amber">MongoDB</span>
+                            <span class="skill-pill pill-amber">Git</span>
+                            <span class="skill-pill pill-amber">UML / SDLC</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 rounded-3xl bg-primary-600 text-white shadow-2xl shadow-primary-500/20">
+                <h3 class="font-bold mb-2 flex items-center gap-2">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span data-lang="en">Education</span><span data-lang="es">Educación</span>
+                </h3>
+                <p class="text-sm opacity-90 leading-tight font-medium"><span data-lang="en">Bachelor of Systems and
+                        Computing Engineering</span><span data-lang="es">Ingeniería de Sistemas y Computación</span></p>
+                <p class="text-xs mt-3 font-black bg-white/20 inline-block px-2 py-1 rounded">UTP | Dec 2024</p>
+            </div>
+        </aside>
+
+        <!-- Right Column: Experience & Projects -->
+        <div class="md:col-span-2 space-y-16">
+            <!-- Experience Zone -->
+            <section id="experience">
+                <h3 class="text-sm font-black uppercase text-slate-400 mb-8 tracking-widest flex items-center gap-2">
+                    <span data-lang="en">Professional Experience</span><span data-lang="es">Experiencia
+                        Profesional</span>
+                    <div class="h-[1px] flex-1 bg-slate-200 dark:bg-slate-800"></div>
+                </h3>
+                <div class="scroll-zone">
+                    <div class="space-y-10">
+                        <!-- White Rabbit -->
+                        <div class="group relative pl-8 border-l-2 border-slate-200 dark:border-slate-800 ml-2">
+                            <div
+                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary-600 group-hover:scale-125 transition-transform shadow-lg shadow-primary-500/50">
+                            </div>
+                            <div class="mb-4">
+                                <span
+                                    class="text-xs font-bold text-primary-600 uppercase bg-primary-50 dark:bg-primary-900/20 px-2 py-1 rounded">Aug
+                                    2025 — Present</span>
+                                <h4 class="text-xl font-bold mt-2">Software Engineer <span
+                                        class="text-slate-400 font-normal">@ White Rabbit</span></h4>
+                            </div>
+                            <div class="text-slate-600 dark:text-slate-400 text-sm space-y-2">
+                                <p data-lang="en">• Automated complex workflows using AI agents (LLMs) and n8n.</p>
+                                <p data-lang="es">• Automatización de flujos complejos utilizando agentes de IA (LLMs) y
+                                    n8n.</p>
+                                <p data-lang="en">• Integrated Salesforce, QuickBooks, and Airtable for billing
+                                    automation.</p>
+                                <p data-lang="es">• Integración de Salesforce, QuickBooks y Airtable para
+                                    automatización.</p>
+                                <p data-lang="en">• Led full-stack development with a focus on English-speaking markets.
+                                </p>
+                                <p data-lang="es">• Liderazgo de desarrollo full-stack enfocado en mercados
+                                    angloparlantes.</p>
+                            </div>
+                        </div>
+
+                        <!-- SuperRedes -->
+                        <div class="group relative pl-8 border-l-2 border-slate-200 dark:border-slate-800 ml-2">
+                            <div
+                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-700 group-hover:bg-primary-500 transition-colors">
+                            </div>
+                            <div class="mb-4">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-tighter">Jul 2024 — Aug
+                                    2025</span>
+                                <h4 class="text-xl font-bold mt-1">Full-Stack Developer <span
+                                        class="text-slate-400 font-normal">@ SuperRedes SAS</span></h4>
+                            </div>
+                            <div class="text-slate-600 dark:text-slate-400 text-sm space-y-2">
+                                <p data-lang="en">• Optimized core systems and integrated Ozmap, GenieACS, and WhatsApp
+                                    messaging.</p>
+                                <p data-lang="es">• Optimización de sistemas centrales e integración de Ozmap, GenieACS
+                                    y WhatsApp.</p>
+                                <p data-lang="en">• Managed multi-cloud resources (AWS S3, EC2) and Dockerized
+                                    environments.</p>
+                                <p data-lang="es">• Gestión de recursos multi-nube (AWS S3, EC2) y entornos
+                                    Dockerizados.</p>
+                            </div>
+                        </div>
+
+                        <!-- Koala Sistemas -->
+                        <div class="group relative pl-8 border-l-2 border-slate-200 dark:border-slate-800 ml-2">
+                            <div
+                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-700 group-hover:bg-primary-500 transition-colors">
+                            </div>
+                            <div class="mb-4">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-tighter">Dec 2023 — Mar
+                                    2025</span>
+                                <h4 class="text-xl font-bold mt-1">Full-Stack Developer <span
+                                        class="text-slate-400 font-normal">@ Koala Sistemas</span></h4>
+                            </div>
+                            <div class="text-slate-600 dark:text-slate-400 text-sm space-y-2">
+                                <p data-lang="en">• Facilitated credit information connections by enhancing app
+                                    performance.</p>
+                                <p data-lang="es">• Facilitación de conexiones de información crediticia mediante
+                                    mejoras en apps.</p>
+                                <p data-lang="en">• Synchronized AWS databases with Google Drive backups.</p>
+                                <p data-lang="es">• Sincronización de bases de datos AWS con backups en Google Drive.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- MENTA -->
+                        <div class="group relative pl-8 border-l-2 border-slate-200 dark:border-slate-800 ml-2">
+                            <div
+                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-700 group-hover:bg-primary-500 transition-colors">
+                            </div>
+                            <div class="mb-4">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-tighter">Aug 2023 — Jan
+                                    2025</span>
+                                <h4 class="text-xl font-bold mt-1">Web Developer <span
+                                        class="text-slate-400 font-normal">@ MENTA UTP</span></h4>
+                            </div>
+                            <div class="text-slate-600 dark:text-slate-400 text-sm space-y-2">
+                                <p data-lang="en">• Integrated blockchain communication for secure timestamp validation.
+                                </p>
+                                <p data-lang="es">• Integración de blockchain para validación segura de marcas de
+                                    tiempo.</p>
+                                <p data-lang="en">• Handled DevOps and internal server deployments.</p>
+                                <p data-lang="es">• Manejo de DevOps y despliegues en servidores internos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Zone -->
+            <section id="projects">
+                <h3 class="text-sm font-black uppercase text-slate-400 mb-8 tracking-widest flex items-center gap-2">
+                    <span data-lang="en">Technical Projects</span><span data-lang="es">Proyectos Técnicos</span>
+                    <div class="h-[1px] flex-1 bg-slate-200 dark:bg-slate-800"></div>
+                </h3>
+                <div class="scroll-zone">
+                    <div class="space-y-8">
+                        <!-- Data Sharding -->
+                        <div
+                            class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary-400 hover:shadow-xl hover:shadow-primary-500/5 transition-all">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="p-2.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-xl">
+                                    <i class="fas fa-database text-lg"></i>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span class="skill-pill pill-slate">MongoDB</span>
+                                    <span class="skill-pill pill-slate">Docker</span>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-lg mb-1"><span data-lang="en">Data Sharding &
+                                    Replication</span><span data-lang="es">Sharding y Replicación de Datos</span></h4>
+                            <p class="text-sm text-slate-500 mb-4">
+                                <span data-lang="en">Backend API using MongoDB replica sets for high availability and
+                                    performant write/read operations.</span>
+                                <span data-lang="es">API Backend usando replica sets de MongoDB para alta disponibilidad
+                                    y rendimiento.</span>
+                            </p>
+                            <a href="https://github.com/MiguelALF12/data-shard-replica" target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-xs font-black text-primary-600 uppercase flex items-center gap-2 hover:gap-3 transition-all tracking-wider">Explore
+                                Repo <i class="fas fa-arrow-right text-[10px]"></i></a>
+                        </div>
+
+                        <!-- HR Manager -->
+                        <div
+                            class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary-400 hover:shadow-xl hover:shadow-primary-500/5 transition-all">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="p-2.5 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 rounded-xl">
+                                    <i class="fas fa-user-tie text-lg"></i>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span class="skill-pill pill-slate">Laravel</span>
+                                    <span class="skill-pill pill-slate">Vue.js</span>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-lg mb-1"><span data-lang="en">Human Resources Manager</span><span
+                                    data-lang="es">Gestor de Recursos Humanos</span></h4>
+                            <p class="text-sm text-slate-500 mb-4">
+                                <span data-lang="en">Comprehensive HR dashboard for hiring flows and employee lifecycle
+                                    management.</span>
+                                <span data-lang="es">Dashboard de RRHH para flujos de contratación y gestión de
+                                    empleados.</span>
+                            </p>
+                            <a href="https://github.com/MiguelALF12/human-resource-dashboard-management" target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-xs font-black text-primary-600 uppercase flex items-center gap-2 hover:gap-3 transition-all tracking-wider">Explore
+                                Repo <i class="fas fa-arrow-right text-[10px]"></i></a>
+                        </div>
+
+                        <!-- Time-Based App -->
+                        <div
+                            class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary-400 hover:shadow-xl hover:shadow-primary-500/5 transition-all">
+                            <div class="flex justify-between items-start mb-4">
+                                <div
+                                    class="p-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-xl">
+                                    <i class="fas fa-clock text-lg"></i>
+                                </div>
+                                <div class="flex gap-2">
+                                    <span class="skill-pill pill-slate">Java</span>
+                                    <span class="skill-pill pill-slate">OOP</span>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-lg mb-1"><span data-lang="en">Time-Based Service
+                                    Management</span><span data-lang="es">Gestión de Servicios por Tiempo</span></h4>
+                            <p class="text-sm text-slate-500 mb-4">
+                                <span data-lang="en">Desktop application for tracking entry/exit times and accurate
+                                    pay-per-minute billing.</span>
+                                <span data-lang="es">Aplicación de escritorio para rastrear tiempos de entrada/salida y
+                                    facturación por minuto.</span>
+                            </p>
+                            <a href="https://github.com/MiguelALF12/users-time-manager" target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-xs font-black text-primary-600 uppercase flex items-center gap-2 hover:gap-3 transition-all tracking-wider">Explore
+                                Repo <i class="fas fa-arrow-right text-[10px]"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer / Contact -->
+    <footer id="contact"
+        class="bg-slate-100 dark:bg-slate-900 py-20 px-4 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-extrabold mb-8 tracking-tighter"><span data-lang="en">Let's build the future
+                    together</span><span data-lang="es">Construyamos el futuro juntos</span></h2>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="mailto:flepard3612@gmail.com"
+                    class="px-8 py-4 bg-primary-600 text-white rounded-2xl font-bold flex items-center gap-2 hover:bg-primary-700 hover:scale-105 transition-all shadow-xl shadow-primary-500/20">
+                    <i class="fas fa-envelope"></i> Email Me
+                </a>
+                <a href="https://wa.me/573218484132"
+                    class="px-8 py-4 bg-emerald-600 text-white rounded-2xl font-bold flex items-center gap-2 hover:bg-emerald-700 hover:scale-105 transition-all shadow-xl shadow-emerald-500/20">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+            <div class="mt-12 flex justify-center gap-8 text-slate-400">
+                <a href="https://github.com/MiguelALF12" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-primary-600 transition-colors"><i class="fab fa-github text-2xl"></i></a>
+                <a href="https://linkedin.com/Miguel-Lopez" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-primary-600 transition-colors"><i class="fab fa-linkedin text-2xl"></i></a>
+            </div>
+            <p class="mt-10 text-slate-500 text-[10px] uppercase font-black tracking-[0.3em]">
+                &copy; 2026 Miguel Angel Lopez Fernandez
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Language Toggle Logic
+        let currentLang = 'en';
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            document.querySelectorAll('[data-lang="en"]').forEach(el => el.style.display = currentLang === 'en' ? 'inline' : 'none');
+            document.querySelectorAll('[data-lang="es"]').forEach(el => el.style.display = currentLang === 'es' ? 'inline' : 'none');
+            document.getElementById('lang-btn').innerText = currentLang === 'en' ? 'ES' : 'EN';
+        }
+
+        // Theme Toggle Logic
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        // Initialize Theme
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+
+        // Ensure language is initialized
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-lang="es"]').forEach(el => el.style.display = 'none');
+        });
+    </script>
+</body>
+
+</html>
